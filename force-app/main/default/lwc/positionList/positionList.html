@@ -1,0 +1,79 @@
+<template>
+    <lightning-card title="💼 Open Positions" icon-name="standard:position">
+
+        <!-- Toggle All / Open -->
+        <div slot="actions">
+            <lightning-button-group>
+                <lightning-button
+                    label="Open Only"
+                    variant={openBtnVariant}
+                    onclick={showOpenOnly}>
+                </lightning-button>
+                <lightning-button
+                    label="All Positions"
+                    variant={allBtnVariant}
+                    onclick={showAll}>
+                </lightning-button>
+            </lightning-button-group>
+        </div>
+
+        <div class="slds-m-around_medium">
+
+            <!-- Summary Stats -->
+            <div class="pos-stats">
+                <div class="pos-stat open">
+                    <span class="pos-count">{openCount}</span>
+                    <span class="pos-label">Open</span>
+                </div>
+                <div class="pos-stat closed">
+                    <span class="pos-count">{closedCount}</span>
+                    <span class="pos-label">Closed</span>
+                </div>
+                <div class="pos-stat total">
+                    <span class="pos-count">{totalPositions}</span>
+                    <span class="pos-label">Total</span>
+                </div>
+            </div>
+
+            <!-- Spinner -->
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+            </template>
+
+            <!-- Error -->
+            <template if:true={hasError}>
+                <div class="error-panel">⚠️ Unable to load positions. Please try again.</div>
+            </template>
+
+            <!-- Position Cards -->
+            <template if:false={isLoading}>
+                <template if:true={hasPositions}>
+                    <div class="position-grid">
+                        <template for:each={positions} for:item="pos">
+                            <div key={pos.Id} class={pos.cardClass}>
+                                <div class="pos-card-header">
+                                    <span class="pos-name">{pos.Name}</span>
+                                    <span class={pos.statusBadge}>{pos.Position_Status__c}</span>
+                                </div>
+                                <div class="pos-card-body">
+                                    <p class="pos-dept">🏢 {pos.departmentLabel}</p>
+                                    <p class="pos-pay">💰 {pos.payRange}</p>
+                                </div>
+                                <div class="pos-card-footer">
+                                    <a href={pos.recordUrl} target="_blank" class="view-link">View Details →</a>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+
+                <template if:false={hasPositions}>
+                    <div class="no-positions">
+                        <p>No positions found.</p>
+                    </div>
+                </template>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>

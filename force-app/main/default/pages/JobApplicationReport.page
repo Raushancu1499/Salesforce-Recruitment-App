@@ -1,0 +1,88 @@
+<apex:page controller="JobApplicationController" sidebar="false" showHeader="true">
+
+    <apex:form id="mainForm">
+        <apex:pageBlock title="📋 Job Application Report">
+
+            <!-- Summary Stats -->
+            <apex:pageBlockSection title="Application Summary" columns="4">
+                <apex:outputPanel layout="block" styleClass="stat-box blue">
+                    <h2>{!totalCount}</h2>
+                    <p>Total Applications</p>
+                </apex:outputPanel>
+                <apex:outputPanel layout="block" styleClass="stat-box green">
+                    <h2>{!appliedCount}</h2>
+                    <p>Applied</p>
+                </apex:outputPanel>
+                <apex:outputPanel layout="block" styleClass="stat-box orange">
+                    <h2>{!interviewCount}</h2>
+                    <p>Interview Scheduled</p>
+                </apex:outputPanel>
+                <apex:outputPanel layout="block" styleClass="stat-box red">
+                    <h2>{!rejectedCount}</h2>
+                    <p>Rejected</p>
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+
+            <!-- Filter Section -->
+            <apex:pageBlockSection title="Filter" columns="2">
+                <apex:outputLabel value="Filter by Status:" for="statusSelect"/>
+                <apex:selectList id="statusSelect" value="{!statusFilter}" size="1">
+                    <apex:selectOption itemValue="All" itemLabel="-- All --"/>
+                    <apex:selectOption itemValue="Applied" itemLabel="Applied"/>
+                    <apex:selectOption itemValue="Schedule Interview" itemLabel="Schedule Interview"/>
+                    <apex:selectOption itemValue="Rejected" itemLabel="Rejected"/>
+                </apex:selectList>
+                <apex:commandButton value="Apply Filter" action="{!filterByStatus}" rerender="resultsPanel"/>
+            </apex:pageBlockSection>
+
+            <!-- Results Table -->
+            <apex:outputPanel id="resultsPanel">
+                <apex:pageBlockSection title="Applications ({!applications.size} records)" columns="1">
+                    <apex:pageBlockTable value="{!applications}" var="app" styleClass="app-table">
+                        <apex:column headerValue="Application Name">
+                            <apex:outputLink value="/{!app.Id}">{!app.Name}</apex:outputLink>
+                        </apex:column>
+                        <apex:column headerValue="Position" value="{!app.Position__r.Name}"/>
+                        <apex:column headerValue="Status">
+                            <apex:outputPanel styleClass="status-pill" layout="inline">
+                                <apex:outputText value="{!app.Status__c}"/>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column headerValue="Application Date" value="{!app.Application_Date__c}"/>
+                    </apex:pageBlockTable>
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+
+        </apex:pageBlock>
+    </apex:form>
+
+    <style>
+        /* ─── Inline styles for VF page ─── */
+        body { font-family: 'Salesforce Sans', Arial, sans-serif; background: #f4f6f9; }
+
+        .stat-box {
+            text-align: center;
+            padding: 14px;
+            border-radius: 8px;
+            color: white;
+            margin: 6px;
+        }
+        .stat-box h2 { font-size: 2rem; margin: 0; font-weight: 700; }
+        .stat-box p  { margin: 4px 0 0; font-size: 0.85rem; opacity: 0.9; }
+
+        .blue   { background: #1e3a5f; }
+        .green  { background: #0070d2; }
+        .orange { background: #ff9800; }
+        .red    { background: #c23934; }
+
+        .app-table thead th { background: #1e3a5f !important; color: white !important; }
+
+        .status-pill {
+            background: #f0f0f0;
+            border-radius: 12px;
+            padding: 2px 10px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+</apex:page>

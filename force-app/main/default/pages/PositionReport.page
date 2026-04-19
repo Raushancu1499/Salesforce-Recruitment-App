@@ -1,0 +1,83 @@
+<apex:page controller="PositionController" sidebar="false" showHeader="true">
+
+    <apex:form id="posForm">
+        <apex:pageBlock title="💼 Position Report">
+
+            <!-- Summary Stats -->
+            <apex:pageBlockSection title="Position Summary" columns="3">
+                <apex:outputPanel layout="block" styleClass="pstat-box pblue">
+                    <h2>{!totalPositions}</h2>
+                    <p>Total Positions</p>
+                </apex:outputPanel>
+                <apex:outputPanel layout="block" styleClass="pstat-box pgreen">
+                    <h2>{!openCount}</h2>
+                    <p>Open</p>
+                </apex:outputPanel>
+                <apex:outputPanel layout="block" styleClass="pstat-box pred">
+                    <h2>{!closedCount}</h2>
+                    <p>Closed</p>
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+
+            <!-- Filter -->
+            <apex:pageBlockSection title="Filter Positions" columns="2">
+                <apex:outputLabel value="Status:" for="posStatus"/>
+                <apex:selectList id="posStatus" value="{!statusFilter}" size="1">
+                    <apex:selectOption itemValue="All"    itemLabel="-- All --"/>
+                    <apex:selectOption itemValue="Open"   itemLabel="Open"/>
+                    <apex:selectOption itemValue="Closed" itemLabel="Closed"/>
+                </apex:selectList>
+                <apex:commandButton value="Filter" action="{!filterPositions}" rerender="posResults"/>
+            </apex:pageBlockSection>
+
+            <!-- Results -->
+            <apex:outputPanel id="posResults">
+                <apex:pageBlockSection title="Positions ({!positions.size} records)" columns="1">
+                    <apex:pageBlockTable value="{!positions}" var="pos">
+                        <apex:column headerValue="Position Name">
+                            <apex:outputLink value="/{!pos.Id}">{!pos.Name}</apex:outputLink>
+                        </apex:column>
+                        <apex:column headerValue="Functional Area" value="{!pos.Functional_Area__c}"/>
+                        <apex:column headerValue="Status">
+                            <apex:outputPanel styleClass="pos-status-pill" layout="inline">
+                                <apex:outputText value="{!pos.Position_Status__c}"/>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column headerValue="Min Pay (USD)" value="{!pos.Min_Pay__c}"/>
+                        <apex:column headerValue="Max Pay (USD)" value="{!pos.Max_Pay__c}"/>
+                    </apex:pageBlockTable>
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+
+        </apex:pageBlock>
+    </apex:form>
+
+    <style>
+        body { font-family: 'Salesforce Sans', Arial, sans-serif; background: #f4f6f9; }
+
+        .pstat-box {
+            text-align: center;
+            padding: 14px;
+            border-radius: 8px;
+            color: white;
+            margin: 6px;
+        }
+        .pstat-box h2 { font-size: 2rem; margin: 0; font-weight: 700; }
+        .pstat-box p  { margin: 4px 0 0; font-size: 0.85rem; opacity: 0.9; }
+
+        .pblue  { background: #1e3a5f; }
+        .pgreen { background: #2e7d32; }
+        .pred   { background: #c23934; }
+
+        thead th { background: #1e3a5f !important; color: white !important; }
+
+        .pos-status-pill {
+            background: #e3f0e3;
+            border-radius: 12px;
+            padding: 2px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #2e7d32;
+        }
+    </style>
+</apex:page>

@@ -1,0 +1,92 @@
+.pos-stats {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.pos-stat {
+    flex: 1;
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-weight: 600;
+}
+
+.pos-stat.open   { background: #2e7d32; }
+.pos-stat.closed { background: #c23934; }
+.pos-stat.total  { background: #1e3a5f; }
+
+.pos-count { font-size: 1.8rem; font-weight: 700; }
+.pos-label { font-size: 0.85rem; opacity: 0.9; }
+
+.position-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+}
+
+.pos-card {
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    border-left: 5px solid transparent;
+    background: #fff;
+    transition: transform 0.15s ease;
+}
+
+.pos-card:hover { transform: translateY(-2px); }
+
+.open-card   { border-left-color: #2e7d32; }
+.closed-card { border-left-color: #c23934; }
+
+.pos-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.pos-name { font-size: 1rem; font-weight: 700; color: #1e3a5f; }
+
+.status-badge {
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+}
+
+.open-badge   { background: #2e7d32; }
+.closed-badge { background: #c23934; }
+
+.pos-dept { color: #555; font-size: 0.85rem; margin: 4px 0; }
+.pos-pay  { color: #333; font-size: 0.9rem;  font-weight: 600; margin: 4px 0; }
+
+.pos-card-footer { margin-top: 10px; }
+
+.view-link {
+    color: #0070d2;
+    font-size: 0.85rem;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.view-link:hover { text-decoration: underline; }
+
+.error-panel {
+    background: #fde7e7;
+    border: 1px solid #c23934;
+    border-radius: 6px;
+    padding: 12px;
+    color: #c23934;
+}
+
+.no-positions {
+    text-align: center;
+    padding: 24px;
+    color: #888;
+    font-style: italic;
+}

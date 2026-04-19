@@ -1,0 +1,88 @@
+<template>
+    <lightning-card title="📋 Job Applications" icon-name="standard:job_profile">
+
+        <!-- Filter Bar -->
+        <div slot="actions">
+            <lightning-combobox
+                name="statusFilter"
+                label=""
+                value={selectedStatus}
+                placeholder="Filter by Status"
+                options={statusOptions}
+                onchange={handleStatusChange}>
+            </lightning-combobox>
+        </div>
+
+        <div class="slds-m-around_medium">
+
+            <!-- Stats Row -->
+            <div class="stats-row">
+                <div class="stat-card stat-total">
+                    <p class="stat-number">{totalCount}</p>
+                    <p class="stat-label">Total</p>
+                </div>
+                <div class="stat-card stat-applied">
+                    <p class="stat-number">{appliedCount}</p>
+                    <p class="stat-label">Applied</p>
+                </div>
+                <div class="stat-card stat-interview">
+                    <p class="stat-number">{interviewCount}</p>
+                    <p class="stat-label">Interview</p>
+                </div>
+                <div class="stat-card stat-rejected">
+                    <p class="stat-number">{rejectedCount}</p>
+                    <p class="stat-label">Rejected</p>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+            </template>
+
+            <!-- Error -->
+            <template if:true={hasError}>
+                <div class="error-box">
+                    <p>⚠️ Error loading applications. Please refresh.</p>
+                </div>
+            </template>
+
+            <!-- Applications Table -->
+            <template if:false={isLoading}>
+                <template if:true={hasApplications}>
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th scope="col"><div class="slds-truncate">Application Name</div></th>
+                                <th scope="col"><div class="slds-truncate">Position</div></th>
+                                <th scope="col"><div class="slds-truncate">Status</div></th>
+                                <th scope="col"><div class="slds-truncate">Applied Date</div></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={applications} for:item="app">
+                                <tr key={app.Id}>
+                                    <td>
+                                        <a href={app.recordUrl} target="_blank">{app.Name}</a>
+                                    </td>
+                                    <td>{app.positionName}</td>
+                                    <td>
+                                        <span class={app.statusClass}>{app.Status__c}</span>
+                                    </td>
+                                    <td>{app.Application_Date__c}</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+
+                <template if:false={hasApplications}>
+                    <div class="empty-state">
+                        <p>No applications found for the selected filter.</p>
+                    </div>
+                </template>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>
