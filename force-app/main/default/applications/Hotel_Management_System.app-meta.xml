@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <logo>hoteliconsimpleflatpictogramforbusi</logo>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <description>Application to manage hotel bookings, rooms, payments and staff operations.</description>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Hotel Management System</label>
+    <navType>Standard</navType>
+    <tabs>standard-home</tabs>
+    <tabs>standard-Feed</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <tabs>Room__c</tabs>
+    <tabs>Reservation__c</tabs>
+    <tabs>Payment__c</tabs>
+    <tabs>Service_Request__c</tabs>
+    <tabs>Hotel__c</tabs>
+    <tabs>Job_Application__c</tabs>
+    <tabs>Review__c</tabs>
+    <tabs>Employment_Website__c</tabs>
+    <tabs>Position__c</tabs>
+    <tabs>Company__c</tabs>
+    <tabs>App_Report</tabs>
+    <tabs>Position_Report</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>Hotel_Management_System_UtilityBar</utilityBar>
+</CustomApplication>

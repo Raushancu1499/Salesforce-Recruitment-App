@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <logo>image_81c0baab</logo>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
+    </brand>
+    <description>Recruitment management system for Delta Computers</description>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Recruitment App</label>
+    <navType>Standard</navType>
+    <tabs>standard-Contact</tabs>
+    <tabs>Open_Positions</tabs>
+    <tabs>Job_Applications</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <tabs>Job_Application__c</tabs>
+    <tabs>Review__c</tabs>
+    <tabs>Employment_Website__c</tabs>
+    <tabs>Position__c</tabs>
+    <tabs>Company__c</tabs>
+    <tabs>App_Report</tabs>
+    <tabs>Position_Report</tabs>
+    <tabs>Job_Inquiry</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>Recruitment_App_UtilityBar</utilityBar>
+</CustomApplication>
